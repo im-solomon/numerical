@@ -36,10 +36,3 @@ f_mat.jacobian(sympy.Matrix([x,y]))
 def f_jacobian(x):
     return [[3*x[0]**2 - 9,-1],[0.7 * np.sinh(0.7 * x[0]),-1]]
 optimize.fsolve(f,[0,0],fprime = f_jacobian)
-
-
-# In[ ]:
-
-
-
-
