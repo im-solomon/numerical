@@ -1,4 +1,3 @@
-
 from scipy import linalg as la
 from scipy import optimize
 import sympy
@@ -16,9 +15,10 @@ x_guesses = [[-3,0],[0,0],[3,0]]
 for x_guess in x_guesses:
     sol = optimize.fsolve(f,x_guess)
     ax.plot(sol[0],sol[1],colors[idx]+'*',markersize=15)
+    ax.plot(x_guess[0], x_guess[1], 'ko')
+    ax.annotate("", xy = (sol[0], sol[1]), xytext = (x_guess[0],x_guess[1]), arrowprops = dict(arrowstyle = "->",linewidth = 1))
     idx+=1
 idx=0
 ax.plot(x,f1,lw=2,label="$x^3 - 9x + 3$")
 ax.plot(x,f2,lw=2,label="cosh(0.7x)")
 ax.legend(loc=0)
-
