@@ -4,7 +4,7 @@ import sympy
 sympy.init_printing()
 import numpy as np
 import matplotlib.pyplot as plt
-x = np.arange(-4,4,0.01)
+x = np.arange(-4,5,0.01)
 f1 = x**3 - 9*x + 3
 f2=np.cosh(0.7*x)
 fig, ax = plt.subplots(figsize=(16,3))
