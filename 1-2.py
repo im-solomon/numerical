@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[26]:
-
 
 from scipy import linalg as la
 from scipy import optimize
@@ -26,10 +21,4 @@ idx=0
 ax.plot(x,f1,lw=2,label="$x^3 - 9x + 3$")
 ax.plot(x,f2,lw=2,label="cosh(0.7x)")
 ax.legend(loc=0)
-
-
-# In[ ]:
-
-
-
 
