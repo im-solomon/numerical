@@ -5,12 +5,19 @@ import scipy
 from scipy import integrate
 import sympy
 sympy.init_printing()
+import mpmath
 
 x = sympy.symbols("x")
 f = x**4 +3*x**3 - 2*x**2 - 3*x + 1
+
 sympy.integrate(f,(x,0,1))
 
 sympy.N(_)
 
-f = sympy.lambdify(x,f)
-scipy.integrate.quad(f,0,1)
+f2 = sympy.lambdify(x,f)
+scipy.integrate.quad(f2,0,1)
+
+mpmath.mp.dps = 100
+f3 = sympy.lambdify(x,f,'mpmath')
+val = mpmath.quad(f3,(0,1))
+sympy.sympify(val)
