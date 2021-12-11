@@ -15,6 +15,7 @@ fig, ax = plt.subplots(3,2,figsize = (20,30))
 x = np.linspace(-1.2,1.2,1000)
 x_2 = np.linspace(a,b,1000)
 
+#실제 그래프와 배경 채우기
 ax[0][0].plot(x,f(x),lw=2)
 ax[0][0].fill_between(x_2,f(x_2),color='green',alpha=0.3)
 ax[0][0].set_title('Trapezoid rule',pad=10,fontsize=20)
@@ -47,36 +48,40 @@ trapz_sumf_2,simp_sumf_2,midp_sumf_2,trapz_sumf_5,simp_sumf_5,midp_sumf_5 = 0,0,
 for inner_x in x2:
     
     t_x = inner_x.astype(float)    
-    #사다리꼴 법칙
+    #-사다리꼴 법칙
     ax[0][0].plot(t_x,f(t_x),'ko')    
+    #수직선
     ax[0][0].plot([t_x,t_x],[0,f(t_x)],color='r',ls='-')    
     
     if before_x != -2:
+        #수평선
         ax[0][0].plot([before_x,t_x],[0,0],color='r',ls='-')
         ax[0][0].plot([before_x,t_x],[f(before_x),f(t_x)],color='r',ls='-')
         trapz_sumf_2 = trapz_sumf_2 + (0.5 * (f(before_x)+f(t_x)) * (t_x - before_x))
-    #사다리꼴 법칙 끝
+    #-사다리꼴 법칙 끝
     
-    #심프슨의 법칙
+    #-심프슨의 법칙
+    #수직선
     ax[1][0].plot([t_x,t_x],[0,f(t_x)],color='r',ls='-')    
     ax[1][0].plot(t_x,f(t_x),'ko')        
-    if before_x != -2:
-        
+    
+    if before_x != -2:      
+        #수평선
         ax[1][0].plot([before_x,t_x],[0,0],color='r',ls='-')
         simp_sumf_2 = simp_sumf_2 + ((t_x-before_x)/6 * (f(before_x)+4*f((before_x+t_x)/2)+f(t_x)))
-    #심프슨의 법칙 끝
+    #-심프슨의 법칙 끝
     
-    #중간점 법칙
-
+    #-중간점 법칙
     if before_x != -2:
 
         ax[2][0].plot((before_x+t_x)/2,f((before_x+t_x)/2),'ko')
-        ax[2][0].plot([before_x,t_x],[f((before_x+t_x)/2),f((before_x+t_x)/2)],color='r',ls='-')#가로
-
-        ax[2][0].plot([before_x,before_x],[f((before_x+t_x)/2),0],color='r',ls='-')#세로
-        ax[2][0].plot([t_x,t_x],[f((before_x+t_x)/2),0],color='r',ls='-')#세로
+        #가로
+        ax[2][0].plot([before_x,t_x],[f((before_x+t_x)/2),f((before_x+t_x)/2)],color='r',ls='-')
+        #세로
+        ax[2][0].plot([before_x,before_x],[f((before_x+t_x)/2),0],color='r',ls='-')
+        ax[2][0].plot([t_x,t_x],[f((before_x+t_x)/2),0],color='r',ls='-')
         midp_sumf_2 = midp_sumf_2 + (t_x-before_x)*f((before_x+t_x)/2)
-    #중간점 법칙 끝
+    #-중간점 법칙 끝
     
     before_x = t_x
     
@@ -89,36 +94,40 @@ for inner_x in x3:
     
     t_x = inner_x.astype(float)
     
-    #사다리꼴 법칙
+    #-사다리꼴 법칙
     ax[0][1].plot(t_x,f(t_x),'ko')    
+    #수직선
     ax[0][1].plot([t_x,t_x],[0,f(t_x)],color='r',ls='-')    
     
     if before_x != -2:
+        #수평선
         ax[0][1].plot([before_x,t_x],[0,0],color='r',ls='-')
         ax[0][1].plot([before_x,t_x],[f(before_x),f(t_x)],color='r',ls='-')
         trapz_sumf_5 = trapz_sumf_5 + (0.5 * (f(before_x)+f(t_x)) * (t_x - before_x))
-    #사다리꼴 법칙 끝
+    #-사다리꼴 법칙 끝
     
-    #심프슨의 법칙
+    #-심프슨의 법칙
+    #수직선
     ax[1][1].plot([t_x,t_x],[0,f(t_x)],color='r',ls='-')   
     ax[1][1].plot(t_x,f(t_x),'ko')
             
     if before_x != -2:
         ax[1][1].plot([before_x,t_x],[0,0],color='r',ls='-')
         simp_sumf_5 = simp_sumf_5 + ((t_x-before_x)/6 * (f(before_x)+4*f((before_x+t_x)/2)+f(t_x)))
-    #심프슨의 법칙 끝
+    #-심프슨의 법칙 끝
     
-    #중간점 법칙
+    #-중간점 법칙
     if before_x != -2:
 
         ax[2][1].plot((before_x+t_x)/2,f((before_x+t_x)/2),'ko')
-        ax[2][1].plot([before_x,t_x],[f((before_x+t_x)/2),f((before_x+t_x)/2)],color='r',ls='-')#가로
-
-        ax[2][1].plot([before_x,before_x],[f((before_x+t_x)/2),0],color='r',ls='-')#세로
-        ax[2][1].plot([t_x,t_x],[f((before_x+t_x)/2),0],color='r',ls='-')#세로
+        #가로
+        ax[2][1].plot([before_x,t_x],[f((before_x+t_x)/2),f((before_x+t_x)/2)],color='r',ls='-')
+        #세로
+        ax[2][1].plot([before_x,before_x],[f((before_x+t_x)/2),0],color='r',ls='-')
+        ax[2][1].plot([t_x,t_x],[f((before_x+t_x)/2),0],color='r',ls='-')
         midp_sumf_5 = midp_sumf_5 + (t_x-before_x)*f((before_x+t_x)/2)
-    #중간점 법칙 끝
-    
+    #-중간점 법칙 끝
+    #이전의 점 저장
     before_x = t_x
 
 print("quad 함수: %f" % quad_val)   
